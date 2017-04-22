@@ -1,0 +1,30 @@
+[info]
+author = Marcos Calvi
+name = project_ow
+title = Project oW
+icon = 
+
+[paths]
+assets_dirs = projects/project_ow/assets;
+blend_dirs = projects/project_ow/blender;
+blender_exec = blender
+build_dir = projects/project_ow/build
+deploy_dir = 
+
+[compile]
+apps = 
+css_ignore = 
+engine_type = compile
+ignore = 
+js_ignore = 
+optimization = advanced
+use_physics = 
+use_smaa_textures = 
+version = 
+
+[deploy]
+assets_path_dest = assets
+assets_path_prefix = assets
+ignore = 
+override = 
+
