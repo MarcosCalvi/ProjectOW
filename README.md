@@ -1,2 +1,0 @@
-# ProjectOW
-Open world survival
