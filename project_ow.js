@@ -8,7 +8,13 @@ var m_app       = require("app");
 var m_cfg       = require("config");
 var m_data      = require("data");
 var m_preloader = require("preloader");
+//var m_fps		= require("fps");
+//var m_lights 	= require("lights");
 var m_ver       = require("version");
+
+var m_system	= require("system");
+var m_char		= require("character");
+var m_env		= require("environment");
 
 // detect application mode
 var DEBUG = (m_ver.type() == "DEBUG");
@@ -25,7 +31,8 @@ exports.init = function() {
         callback: init_cb,
         show_fps: DEBUG,
         console_verbose: DEBUG,
-        autoresize: true
+        autoresize: true,
+		key_pause_enabled: true
     });
 }
 
@@ -74,10 +81,12 @@ function load_cb(data_id, success) {
         console.log("b4w load failure");
         return;
     }
-
-    m_app.enable_camera_controls();
-
-    // place your code here
+	// m_cfg.set('physics_use_wasm', true);
+	
+	m_system.init_system();
+	m_env.init_environment();
+	m_char.init_character();
+	// place your code here
 
 }
 
