@@ -1,3 +1,4 @@
 # ProjectOW
 Open world survival
-[a link](https://marcoscalvi.github.io/ProjectOW/)
+
+[Live page](https://marcoscalvi.github.io/ProjectOW/)
