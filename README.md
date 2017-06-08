@@ -1,3 +1,3 @@
 # ProjectOW
 Open world survival
-C:\Program Files\Notepad++
+https://marcoscalvi.github.io/ProjectOW/
