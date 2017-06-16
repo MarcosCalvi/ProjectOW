@@ -44,6 +44,13 @@ Open world survival
   - [ ] Profile
   - [ ] Stats
   - [ ] Cooperative
+- [ ] Network
+  - [ ] Server 
+  - [ ] Download
+- [ ] Installer
+  - [ ] Local web server
+  - [ ] Server config
+  - [ ] Installation structure
 ## Environment
 - [ ] Particle systems
   - [ ] Grass
