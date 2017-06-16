@@ -72,8 +72,10 @@ Open world survival
 - [ ] Animations
 ## Construction
 - [ ] Player gameplay
-## Objects: resources, crafting, 
+## Objects: resources, crafting, construction
 - [ ] Live items
   - [ ] List all items
   - [ ] Props
   - [ ] Spawnig objects
+  - [ ] Craft objects
+  - [ ] Construct buildings
