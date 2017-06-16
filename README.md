@@ -63,6 +63,8 @@ Open world survival
 - [ ] Inventory
 - [ ] Stats and learning
 - [ ] Fight system
+- [ ] Construction system
+- [ ] Health system
 ## Enemies
 - [ ] AI
 - [ ] Animation system
