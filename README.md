@@ -4,47 +4,47 @@ Open world survival
 [Live page](https://marcoscalvi.github.io/ProjectOW/)
 
 ## Project general
-### - [ ] Writedown story
-### - [ ] Splash screen
-### - [ ] Objects hierarchy
-### - [ ] Project structure
-### - [ ] Crafting
-### - [ ] Construction
-### - [ ] Terrain manipulation
+- [ ] Writedown story
+- [ ] Splash screen
+- [ ] Objects hierarchy
+- [ ] Project structure
+- [ ] Crafting
+- [ ] Construction
+- [ ] Terrain manipulation
 ## System
-### - [ ] Game config
-### - [ ] Data saving
-### - [ ] Game saving
-### - [ ] UI
-### - [ ] Users system
+- [ ] Game config
+- [ ] Data saving
+- [ ] Game saving
+- [ ] UI
+- [ ] Users system
   - [ ] Authentication
   - [ ] Profile
   - [ ] Stats
   - [ ] Cooperative
 ## Environment
-### - [ ] Particle systems
+- [ ] Particle systems
   - [ ] Grass
   - [ ] Dirt and stones
   - [ ] Vegetation
   - [ ] Rocks
-### - [ ] Terrain
+- [ ] Terrain
   - [ ] Materials
   - [ ] Material mixing
   - [ ] Shadows
-### - [ ] Daycycle
-### - [ ] Weather
-### - [ ] Sea
+- [ ] Daycycle
+- [ ] Weather
+- [ ] Sea
 
 ## Character
-### - [ ] Animation
-### - [ ] Environment interacting
-### - [ ] Inventory
-### - [ ] Stats and learning
-### - [ ] Fight system
+- [ ] Animation
+- [ ] Environment interacting
+- [ ] Inventory
+- [ ] Stats and learning
+- [ ] Fight system
 ## Enemies
-### - [ ] Animation system
-### - [ ] Enemy characters
-### - [ ] Animations
+- [ ] Animation system
+- [ ] Enemy characters
+- [ ] Animations
 ## Objects: resources, crafting, 
-### - [ ] Live items
+- [ ] Live items
   - [ ] Spawnig objects
