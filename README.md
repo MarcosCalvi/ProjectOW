@@ -8,18 +8,32 @@ Open world survival
 - [ ] Splash screen
 - [ ] Objects hierarchy
 - [ ] Project structure
+- [ ] Crafting
+- [ ] Construction
+- [ ] Terrain manipulation
 ## System
 - [ ] Game config
 - [ ] Data saving
 - [ ] Game saving
 - [ ] UI
+- [ ] Users system
+  - [ ] Authentication
+  - [ ] Profile
+  - [ ] Stats
 ## Environment
-- [ ] Particle systems
+- [ ] [Particle systems](http://google.com)
   - [ ] Grass
   - [ ] Dirt and stones
   - [ ] Vegetation
   - [ ] Rocks
-- [ ] 
+- [ ] Terrain
+  - [ ] Materials
+  - [ ] Material mixing
+  - [ ] Shadows
+- [ ] Daycycle
+- [ ] Weather
+- [ ] Sea
+
 ## Character
 - [ ] Animation
 - [ ] Environment interacting
