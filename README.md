@@ -40,13 +40,13 @@ Open world survival
     - [ ] Inventory
     - [ ] Ingame options
 - [ ] Users system
-  - [ ] Authentication
-  - [ ] Profile
-  - [ ] Stats
-  - [ ] Cooperative
+  - [ ] Net Authentication
+  - [ ] Net Profile
+  - [ ] Net Stats
 - [ ] Network
   - [ ] Server 
   - [ ] Download
+  - [ ] Cooperative
 - [ ] Installer
   - [ ] Local web server
   - [ ] Server config
