@@ -6,6 +6,23 @@ Open world survival
 ## Project general
 - [ ] Writedown story
 - [ ] Objects hierarchy
+  - [ ] Animals
+  - [ ] Dinos
+  - [ ] Resources
+    - [ ] Food
+      - [ ] Water
+      - [ ] Meat and fish
+      - [ ] Fruits (several types ~6)
+      - [ ] Eggs
+      - [ ] Wheat
+    - [ ] Wood
+    - [ ] Stone
+    - [ ] Iron
+    - [ ] Thatch   
+  - [ ] Usable items
+    - [ ] Tools
+    - [ ] Weapons
+  - [ ] Items
 - [ ] Project structure
 - [ ] Crafting
 - [ ] Construction
@@ -19,6 +36,9 @@ Open world survival
   - [ ] Main menu
   - [ ] Ingame UI
     - [ ] Character stats
+    - [ ] Map
+    - [ ] Inventory
+    - [ ] Ingame options
 - [ ] Users system
   - [ ] Authentication
   - [ ] Profile
@@ -44,9 +64,12 @@ Open world survival
 - [ ] Stats and learning
 - [ ] Fight system
 ## Enemies
+- [ ] AI
 - [ ] Animation system
 - [ ] Enemy characters
 - [ ] Animations
+## Construction
+- [ ] Player gameplay
 ## Objects: resources, crafting, 
 - [ ] Live items
   - [ ] List all items
