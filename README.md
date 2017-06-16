@@ -5,7 +5,6 @@ Open world survival
 
 ## Project general
 - [ ] Writedown story
-- [ ] Splash screen
 - [ ] Objects hierarchy
 - [ ] Project structure
 - [ ] Crafting
@@ -16,6 +15,10 @@ Open world survival
 - [ ] Data saving
 - [ ] Game saving
 - [ ] UI
+  - [ ] Splash screen
+  - [ ] Main menu
+  - [ ] Ingame UI
+    - [ ] Character stats
 - [ ] Users system
   - [ ] Authentication
   - [ ] Profile
@@ -34,7 +37,6 @@ Open world survival
 - [ ] Daycycle
 - [ ] Weather
 - [ ] Sea
-
 ## Character
 - [ ] Animation
 - [ ] Environment interacting
@@ -47,4 +49,6 @@ Open world survival
 - [ ] Animations
 ## Objects: resources, crafting, 
 - [ ] Live items
+  - [ ] List all items
+  - [ ] Props
   - [ ] Spawnig objects
