@@ -2,7 +2,7 @@
 author = Marcos Calvi
 name = project_ow
 title = Project oW
-icon = 
+icon = project_ow.png
 
 [paths]
 assets_dirs = projects/project_ow/assets;

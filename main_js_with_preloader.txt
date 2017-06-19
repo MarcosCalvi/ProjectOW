@@ -1,0 +1,146 @@
+"use strict"
+
+// register the application module
+b4w.register("project_ow_app", function(exports, require) {
+
+// import modules used by the app
+var m_main 		= require("main");
+var m_app       = require("app");
+var m_cfg       = require("config");
+var m_data      = require("data");
+var m_preloader = require("preloader");
+//var m_fps		= require("fps");
+//var m_lights 	= require("lights");
+var m_ver       = require("version");
+var m_npc_ai 	= require("npc_ai");
+var m_scs 		= require("scenes");
+var m_system	= require("system");
+var m_char		= require("character");
+var m_env		= require("environment");
+var m_anim		= require("animation");
+var m_obj_man 	= require("objects_manager");
+
+// detect application mode
+var DEBUG = (m_ver.type() == "DEBUG");
+
+// automatically detect assets path
+var APP_ASSETS_PATH = m_cfg.get_assets_path("project_ow");
+
+var PRELOADING = true;
+
+var _pl_bar = null;
+var _pl_fill = null;
+var _pl_caption = null;
+
+/**
+ * export the method to initialize the app (called at the bottom of this file)
+ */
+exports.init = function() {
+    m_app.init({
+        canvas_container_id: "main_canvas_container",
+        callback: init_cb,
+        show_fps: DEBUG,
+        console_verbose: DEBUG,
+		gl_debug: true,
+        autoresize: true,
+		key_pause_enabled: true
+    });
+}
+
+/**
+ * callback executed when the app is initialized 
+ */
+function init_cb(canvas_elem, success) {
+
+    if (!success) {
+        console.log("b4w init failure");
+        return;
+    }
+
+    create_preloader();
+
+    // ignore right-click on the canvas element
+    canvas_elem.oncontextmenu = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    };
+
+    load();
+}
+
+/**
+ * load the scene data
+ */
+function load() {
+	var p_cb = PRELOADING ? preloader_callback : null;
+    m_data.load(APP_ASSETS_PATH + "project_ow.json", p_cb, !true);
+}
+
+/**
+ * update the app's preloader
+ */
+// function preloader_cb(percentage) {
+    // m_preloader.update_preloader(percentage);
+// }
+function create_preloader() {
+    m_main.pause();
+
+    var pl_cont = document.querySelector("#pl_cont");
+    var pl_frame = pl_cont.querySelector("#pl_frame");
+
+    _pl_bar = document.querySelector("#pl_bar");
+    _pl_caption = document.querySelector("#pl_caption");
+    _pl_fill = document.querySelector("#pl_fill");
+
+    m_app.css_animate(pl_cont, "opacity", 0, 1, 500, "", "", function() {
+        m_main.resume();
+
+        pl_frame.style.opacity = 1;
+    })
+}
+/**
+ * callback executed when the scene data is loaded
+ */
+function load_cb(data_id, success) {
+
+    if (!success) {
+        console.log("b4w load failure");
+        return;
+    }
+	// m_cfg.set('physics_use_wasm', true);
+	
+	m_system.init_system();
+	m_env.init_environment();
+	m_char.init_character();
+	m_obj_man.init_objects_system();
+	// initTRex();
+	// place your code here
+
+}
+
+function preloader_callback(percentage) {
+    _pl_bar.style.width = percentage / (460 / 295) + "%";
+    _pl_fill.style.width = (100 - percentage) + "%";
+    _pl_caption.innerHTML = percentage + "%";
+
+    if (percentage == 100) {
+        var pl_cont = document.querySelector("#pl_cont");
+        var pl_frame = pl_cont.querySelector("#pl_frame");
+        var scroll_panel = document.querySelector("#scroll_panel");
+
+        pl_frame.style.opacity = 0;
+
+        m_app.css_animate(pl_cont, "opacity", 1, 0, 1000, "", "", function() {
+            m_app.css_animate(scroll_panel, "opacity", 0, 1, 500);
+
+            pl_cont.parentNode.removeChild(pl_cont);
+        })
+    }
+}
+
+
+});
+
+// import the app module and start the app by calling the init method
+b4w.require("project_ow_app").init();
