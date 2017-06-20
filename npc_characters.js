@@ -10,6 +10,7 @@ var m_scs 		= require("scenes");
 var m_npc_ai 	= require("npc_ai");
 var m_obj_man 	= require("objects_manager");
 var m_anim		= require("animation");
+var m_sys 		= require("system");
 
 var _npc_wrapper;
 
@@ -35,7 +36,8 @@ var initTRex = function (object) {
 		phys_body: m_scs.get_object_by_dupli_name("GroupTRex", "TRex"),
         rig:    m_scs.get_object_by_dupli_name("GroupTRex", "ArmatureTRex"),
         model:   m_scs.get_object_by_dupli_name("GroupTRex", "TRex"),
-		obj_core: object
+		obj_core: object,
+		char_common_stats: m_sys.get_char_common_stats(),
 	}
 	m_anim.apply(m_scs.get_object_by_dupli_name("GroupTRex", "ArmatureTRex"), 'ArmatureTRex_proxyAction_B4W_BAKED');
 	var graph = {

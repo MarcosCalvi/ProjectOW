@@ -22,11 +22,9 @@ Open world survival
   - [ ] Usable items
     - [ ] Tools
     - [ ] Weapons
-  - [ ] Items
 - [ ] Project structure
 - [ ] Crafting
 - [ ] Construction
-- [ ] Terrain manipulation
 ## System
 - [ ] Game config
 - [ ] Data saving

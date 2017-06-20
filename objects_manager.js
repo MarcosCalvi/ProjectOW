@@ -8,7 +8,7 @@ b4w.register("objects_manager", function(exports, require) {
 var m_scs 		= require("scenes");
 var m_main		= require("main");
 var m_scrn 		= require("screenshooter");
-var m_gm_opt	= require("game_options");
+// var m_gm_opt	= require("game_options");
 var m_cons  	= require("constraints");
 var m_trans 	= require("transform");
 var m_phy 		= require("physics");

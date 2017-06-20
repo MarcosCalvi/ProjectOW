@@ -13,13 +13,15 @@ var m_mouse		= require("mouse");
 var m_scs 		= require("scenes");
 var m_main		= require("main");
 var m_scrn 		= require("screenshooter");
-var m_gm_opt	= require("game_options");
+var m_gm_prprts	= require("game_properties");
+var m_gm_opts	= require("game_options");
 var m_obj_man	= require("objects_manager");
 var m_cons  	= require("constraints");
 var m_trans 	= require("transform");
 var m_phy 		= require("physics");
 var m_anim		= require("animation");
 var m_vec3		= require("vec3");
+var m_sys 		= require("system");
 
 var _char_wrapper;
 
@@ -42,10 +44,12 @@ exports.init_character = function() {
 			m_scs.get_object_by_dupli_name("GroupCharacterJim", "EmptyHeadCam"), 
 			m_scs.get_object_by_dupli_name("GroupCharacterJim", "Empty3rdPersonCam")
 			],
-		type: 'character'
+		type: 'character',
+		char_common_stats: m_sys.get_char_common_stats()
 	}
 	
 	setup_char_cam_empties();
+	_char_wrapper.char_common_stats.STAMINA = 0;
 	// setup_camera_start_position();
 	setup_mouselook();
 	setup_movement();
@@ -55,14 +59,16 @@ exports.init_character = function() {
 	m_anim.apply(_char_wrapper.rig, 'GroupCharacterJim_proxyAction_B4W_BAKED');
     m_anim.set_behavior(_char_wrapper.rig, m_anim.AB_CYCLIC);
     m_anim.play(_char_wrapper.rig);
+	// m_gm_prprts.char_cam_offsets.CAM_OFFSET_HEAD = [0,0,0];
+	// var v = m_gm_opts.char_cam_offsets.CAM_OFFSET_HEAD;
 
 }
 
 var setup_char_cam_empties = function() {
-	_vec3_tmp = m_gm_opt.char_cam_offsets.CAM_OFFSET_HEAD;
+	_vec3_tmp = m_gm_prprts.char_cam_offsets.CAM_OFFSET_HEAD;
 	m_cons.remove(_char_wrapper.cam_empties[0]);
 	m_cons.append_stiff(_char_wrapper.cam_empties[0], _char_wrapper.phys_body, _vec3_tmp);
-	_vec3_tmp = m_gm_opt.char_cam_offsets.CAM_OFFSET_3RD_PERSON;
+	_vec3_tmp = m_gm_prprts.char_cam_offsets.CAM_OFFSET_3RD_PERSON;
 	m_cons.remove(_char_wrapper.cam_empties[1]);
 	m_cons.append_stiff(_char_wrapper.cam_empties[1], _char_wrapper.phys_body, _vec3_tmp);
 
