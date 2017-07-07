@@ -8,7 +8,7 @@ div#main_canvas_container {
     position: absolute;
     left: 0px;
     top: 0px;
-    z-index: 1;
+    z-index: 0;
     width: 100%;
     height: 100%;
 }
@@ -42,92 +42,19 @@ div#preloader_cont {
     background-position: center center;
     visibility: hidden;
 }
+span#counter {
+	color: #ccccff;
+	font-size: 24px;
+	position: relative;
+	top: 100px;
+	left: 184px;
+}
 
-/* div#pl_fill { */
-    /* background-color: #fff; */
-    /* height: 30px; */
-    /* width: 100%; */
-    /* float: right; */
-/* } */
-
-/* div#pl_cont { */
-    /* z-index: 4; */
-    /* width: 100%; */
-    /* height: 100%; */
-    /* position: absolute; */
-    /* margin: 0; */
-    /* padding: 0; */
-/* } */
-
-/* div#pl_frame { */
-    /* z-index: 2; */
-    /* position:absolute; */
-    /* left: 50%; */
-    /* top: 50%; */
-    /* width: 499px; */
-    /* height: 134px; */
-    /* margin-left: -300px; */
-    /* margin-top: -80px; */
-    /* opacity: 0; */
-/* } */
-
-/* div#pl_bar { */
-    /* position: relative; */
-    /* float: left; */
-    /* background-image: url(icons/preloader_caption.png); */
-    /* background-repeat: repeat-x; */
-    /* top: 52px; */
-    /* height: 30px; */
-    /* max-width: 315px; */
-/* } */
-
-/* div#preloader_left { */
-    /* position: relative; */
-    /* float: left; */
-    /* background-image: url(icons/left_caption.png); */
-    /* background-repeat: no-repeat; */
-    /* left: 0; */
-    /* width: 5px; */
-    /* top: 52px; */
-    /* height: 30px; */
-/* } */
-
-/* div#preloader_right { */
-    /* position: absolute; */
-    /* background-image: url(icons/right_caption.png); */
-    /* background-repeat: no-repeat; */
-    /* right: -100px; */
-    /* width: 115px; */
-    /* top: 3px; */
-    /* height: 94px; */
-/* } */
-
-/* div#plane_icon { */
-    /* position: relative; */
-    /* float: left; */
-    /* background-image: url(icons/plane.png); */
-    /* background-repeat: no-repeat; */
-    /* width: 165px; */
-    /* height: 134px; */
-/* } */
-
-/* div.fill_container { */
-    /* width: 314px; */
-    /* position: absolute; */
-    /* left: 170px; */
-    /* height: 30px; */
-    /* top: 52px; */
-/* } */
-
-/* div#pl_caption { */
-    /* position:absolute; */
-    /* top: 57px; */
-    /* width: 70px; */
-    /* height: 20px; */
-    /* left: -10px; */
-    /* text-align: center; */
-    /* font-size: 18px; */
-    /* color: #ffffff; */
-    /* font-family: Open Sans Ultra Bold; */
-    /* line-height: 105%; */
-/* } */
+div#hud {
+	position: absolute;
+	z-index: 1;
+	font-size: 20px;
+	color: #ffffff;
+	visibility: hidden;
+}
+ 

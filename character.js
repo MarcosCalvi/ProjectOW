@@ -22,8 +22,15 @@ var m_phy 		= require("physics");
 var m_anim		= require("animation");
 var m_vec3		= require("vec3");
 var m_sys 		= require("system");
+var m_math 		= require("math");
+var m_tsr 		= require("tsr");
+var m_quat 		= require("quat");
+var m_cam 		= require("camera");
+var m_ui 		= require("ui");
 
 var _char_wrapper;
+
+var _move_state;
 
 var _move_keys_array;
 
@@ -49,19 +56,16 @@ exports.init_character = function() {
 	}
 	
 	setup_char_cam_empties();
+	
 	_char_wrapper.char_common_stats.STAMINA = 0;
-	// setup_camera_start_position();
 	setup_mouselook();
 	setup_movement();
 	setup_controls();
-	// spawn_character("EmptySpawner1");
 	m_obj_man.spawn_game_object(_char_wrapper.phys_body, "EmptySpawner1");
 	m_anim.apply(_char_wrapper.rig, 'GroupCharacterJim_proxyAction_B4W_BAKED');
     m_anim.set_behavior(_char_wrapper.rig, m_anim.AB_CYCLIC);
     m_anim.play(_char_wrapper.rig);
-	// m_gm_prprts.char_cam_offsets.CAM_OFFSET_HEAD = [0,0,0];
-	// var v = m_gm_opts.char_cam_offsets.CAM_OFFSET_HEAD;
-
+	setup_view_ray();
 }
 
 var setup_char_cam_empties = function() {
@@ -73,22 +77,47 @@ var setup_char_cam_empties = function() {
 	m_cons.append_stiff(_char_wrapper.cam_empties[1], _char_wrapper.phys_body, _vec3_tmp);
 
 }
-// Obsolete
-var setup_camera_start_position = function() {
+var setup_view_ray = function() {
+	var from = new Float32Array(3);
+    var pline = m_math.create_pline();
+    var to = new Float32Array(3);
 
-	for (var i = 0; i < _char_wrapper.cam_empties.length; i++) {
-		if (_char_wrapper.current_cam == 0) {
-			m_trans.get_translation(_char_wrapper.cam_empties[0], _vec3_tmp);
-			m_trans.set_translation_v(_char_wrapper.cam, _vec3_tmp);
-			m_trans.get_rotation(_char_wrapper.cam_empties[0], _quat);
-			m_trans.set_rotation_v(_char_wrapper.cam, _quat);
-		} else if (_char_wrapper.current_cam == 1) {
-			m_trans.get_translation(_char_wrapper.cam_empties[1], _vec3_tmp);
-			m_trans.set_translation_v(_char_wrapper.cam, _vec3_tmp);
-			m_trans.get_rotation(_char_wrapper.cam_empties[1], _quat);
-			m_trans.set_rotation_v(_char_wrapper.cam, _quat);
+    var decal_tsr = m_tsr.create();
+    var obj_tsr = m_tsr.create();
+    var decal_rot = m_quat.create();
+
+    var ray_test_cb = function(id, hit_fract, obj_hit, hit_time, hit_pos, hit_norm) {
+		
+		console.log("Object hit: " + obj_hit.name + " Hit position: " + hit_pos);
+		m_ui.update_info(obj_hit.name);
+    }
+	
+	var x = 1, y = 1, old_x = 0, old_y = 0, moved = false;
+
+    var mouse_cb = function(e) {
+        x = e.clientX;
+        y = e.clientY;
+		moved = true;
+    }
+	
+	var view_cb = function() {
+		if (old_x == x && old_y == y && moved == false && _move_state.forw_back == 0 && _move_state.left_right == 0) {			
+			m_cam.calc_ray(m_scs.get_active_camera(), x, y, pline);
+			m_math.get_pline_directional_vec(pline, to);
+			m_vec3.scale(to, 100, to);
+			var obj_src = m_scs.get_active_camera();
+			var id = m_phy.append_ray_test_ext(obj_src, from, to, "ANY",
+					ray_test_cb, true, false, true, true);
+		} else if (moved == true) {
+			old_x = x, old_y = y;
+			moved = false;
 		}
 	}
+
+    var cont = m_cont.get_container();
+    cont.addEventListener("mousemove", mouse_cb, false);
+	var cb_sensor = m_ctl.create_callback_sensor(view_cb);
+	m_ctl.create_sensor_manifold(_char_wrapper.cam, "VIEW", m_ctl.CT_CONTINUOUS, [cb_sensor]);
 }
 
 var setup_movement = function() {
@@ -100,7 +129,7 @@ var setup_movement = function() {
 	var key_space = m_ctl.create_keyboard_sensor(m_ctl.KEY_SPACE);
 	var key_shift = m_ctl.create_keyboard_sensor(m_ctl.KEY_SHIFT);
 
-	var move_state = {
+	_move_state = {
 		left_right: 0,
 		forw_back: 0
 	}
@@ -113,16 +142,16 @@ var setup_movement = function() {
     if (pulse == 1) {
         switch (id) {
         case "FORWARD":
-            move_state.forw_back = 1;
+            _move_state.forw_back = 1;
             break;
         case "BACKWARD":
-            move_state.forw_back = -1;
+            _move_state.forw_back = -1;
             break;
         case "LEFT":
-            move_state.left_right = 1;
+            _move_state.left_right = 1;
             break;
         case "RIGHT":
-            move_state.left_right = -1;
+            _move_state.left_right = -1;
             break;
         case "RUNNING":
             m_phy.set_character_move_type(obj, m_phy.CM_RUN);
@@ -132,11 +161,11 @@ var setup_movement = function() {
         switch (id) {
         case "FORWARD":
         case "BACKWARD":
-            move_state.forw_back = 0;
+            _move_state.forw_back = 0;
             break;
         case "LEFT":
         case "RIGHT":
-            move_state.left_right = 0;
+            _move_state.left_right = 0;
             break;
         case "RUNNING":
             m_phy.set_character_move_type(obj, m_phy.CM_WALK);
@@ -144,8 +173,8 @@ var setup_movement = function() {
         }
     }
 
-    m_phy.set_character_move_dir(obj, move_state.forw_back,
-                                      move_state.left_right);
+    m_phy.set_character_move_dir(obj, _move_state.forw_back,
+                                      _move_state.left_right);
 	};
 	m_ctl.create_sensor_manifold(_char_wrapper.phys_body, "FORWARD", m_ctl.CT_TRIGGER,
     move_array, function(s) {return s[0]}, move_cb);
@@ -174,8 +203,6 @@ var setup_controls = function() {
 	var key_v = m_ctl.create_keyboard_sensor(m_ctl.KEY_V);
 	var key_p = m_ctl.create_keyboard_sensor(m_ctl.KEY_P);
 	var key_backspace = m_ctl.create_keyboard_sensor(m_ctl.KEY_BACKSPACE);
-	
-	var el_sens = m_ctl.create_elapsed_sensor();
 	
 	var change_camera_cb = function(obj, id, pulse) {
 		if (pulse == 1) {

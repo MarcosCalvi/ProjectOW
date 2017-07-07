@@ -18,6 +18,7 @@ var m_char		= require("character");
 var m_env		= require("environment");
 var m_anim		= require("animation");
 var m_obj_man 	= require("objects_manager");
+var m_ui 		= require("ui");
 
 // detect application mode
 var DEBUG = (m_ver.type() == "DEBUG");
@@ -103,6 +104,7 @@ function load_cb(data_id, success) {
 	m_env.init_environment();
 	m_char.init_character();
 	m_obj_man.init_objects_system();
+	m_ui.init_ui();
 	// initTRex();
 	// place your code here
 
