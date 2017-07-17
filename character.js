@@ -87,9 +87,11 @@ var setup_view_ray = function() {
     var decal_rot = m_quat.create();
 
     var ray_test_cb = function(id, hit_fract, obj_hit, hit_time, hit_pos, hit_norm) {
+		if(obj_hit != null) {
+			console.log("Object hit: " + obj_hit.name + " Hit position: " + hit_pos);
+			m_ui.update_info(obj_hit.name);
+		}
 		
-		console.log("Object hit: " + obj_hit.name + " Hit position: " + hit_pos);
-		m_ui.update_info(obj_hit.name);
     }
 	
 	var x = 1, y = 1, old_x = 0, old_y = 0, moved = false;
@@ -112,12 +114,24 @@ var setup_view_ray = function() {
 			old_x = x, old_y = y;
 			moved = false;
 		}
+		
 	}
 
     var cont = m_cont.get_container();
     cont.addEventListener("mousemove", mouse_cb, false);
-	var cb_sensor = m_ctl.create_callback_sensor(view_cb);
-	m_ctl.create_sensor_manifold(_char_wrapper.cam, "VIEW", m_ctl.CT_CONTINUOUS, [cb_sensor]);
+	// var cb_sensor = m_ctl.create_callback_sensor(view_cb);
+	var el_sensor = m_ctl.create_elapsed_sensor();
+	var el_time;
+	var check_elapsed = function() {
+		if(el_time<1) {
+			el_time += el_sensor.value;
+			return false;
+		} else {
+			el_time = 0;
+			return true;
+		}
+	}
+	m_ctl.create_sensor_manifold(_char_wrapper.cam, "VIEW", m_ctl.CT_CONTINUOUS, [el_sensor], check_elapsed, view_cb);
 }
 
 var setup_movement = function() {
