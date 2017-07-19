@@ -77,6 +77,7 @@ var setup_char_cam_empties = function() {
 	m_cons.append_stiff(_char_wrapper.cam_empties[1], _char_wrapper.phys_body, _vec3_tmp);
 
 }
+
 var setup_view_ray = function() {
 	var from = new Float32Array(3);
     var pline = m_math.create_pline();
