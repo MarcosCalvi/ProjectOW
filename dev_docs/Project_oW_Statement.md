@@ -2,7 +2,7 @@
 																													A Coruña, Galicia, Spain
 																													07/19/2017
 
-		ProjectoW Statement	
+		#ProjectoW Statement	
 		
 		
     I have esentially outlined in my head the structure and I am intending to do basically a survival game, you will have to keep you alive as the days are passing in an island where you have shipwrecked. The time I thought of is the sixties of the XX century, I have in my mind a couple of twists in the history to provide the character with some tools, machete, axe from a lost japanese camp which left behind from WWII, maybe I include the famous japanese who did not surrender until the seventies, I think is a funny story to include. Maybe some shot down Zero could be usable just to give the character a couple of tools. I am introducing some dinosaurs too, as well as animals to hunt, fish you can fish, vegetables... As I am writing I am seeing a lot of work there but I am confident, haha... The dinosaurs thing is mostly because my nephews like them, so... Maybe some nuclear test made them appear in that island, hehe. 
